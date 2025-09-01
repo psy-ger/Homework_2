@@ -1,8 +1,12 @@
-def memoize(func):
-    """Decorator to cache function results."""
-    cache = {}
 
-    def wrapper(*args):
+from typing import Callable, Any, Dict, Tuple
+
+
+def memoize(func: Callable[..., Any]) -> Callable[..., Any]:
+    """Decorator to cache function results."""
+    cache: Dict[Tuple[Any, ...], Any] = {}
+
+    def wrapper(*args: Any) -> Any:
         """Wrapper function to check cache before calling the original function."""
         if args in cache:
             print(f"Взято з кешу: {args}")
@@ -14,7 +18,7 @@ def memoize(func):
 
 
 @memoize
-def factorial(n):
+def factorial(n: int) -> int:
     """Calculate factorial of n with memoization."""
     if n == 0 or n == 1:
         return 1

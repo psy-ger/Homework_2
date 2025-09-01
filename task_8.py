@@ -1,12 +1,16 @@
-def create_user_settings():
+
+from typing import Dict, Any, Tuple, Callable
+
+
+def create_user_settings() -> Tuple[Callable[[str, Any], str], Callable[[str], Any], Callable[[], Dict[str, Any]]]:
     """create_user_settings function to manage user settings with nested functions"""
-    settings = {
+    settings: Dict[str, Any] = {
         'theme': 'light',
         'language': 'uk',
         'notifications': True
     }
 
-    def set_setting(key, value):
+    def set_setting(key: str, value: Any) -> str:
         """set_setting function to update a setting"""
         if key in settings:
             settings[key] = value  # update the setting
@@ -14,11 +18,11 @@ def create_user_settings():
         else:
             return f"Параметр '{key}' не знайдено"
 
-    def get_setting(key):
+    def get_setting(key: str) -> Any:
         """get_setting function to retrieve a setting"""
         return settings.get(key, f"Параметр '{key}' не знайдено")
 
-    def view_settings():
+    def view_settings() -> Dict[str, Any]:
         """view_settings function to view all settings"""
         return settings.copy()
 
@@ -26,6 +30,9 @@ def create_user_settings():
 
 
 # example usage
+set_setting: Callable[[str, Any], str]
+get_setting: Callable[[str], Any]
+view_settings: Callable[[], Dict[str, Any]]
 set_setting, get_setting, view_settings = create_user_settings()
 print(view_settings())
 print(set_setting('theme', 'dark'))

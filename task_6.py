@@ -1,7 +1,11 @@
 
-def create_calculator(operator):
+
+from typing import Callable, Union
+
+
+def create_calculator(operator: str) -> Callable[[float, float], Union[float, str]]:
     """create_calculator function that returns a calculator function based on the operator"""
-    def calculator(a, b):
+    def calculator(a: float, b: float) -> Union[float, str]:
         """calculator function to perform the operation"""
         if operator == '+':
             return a + b
@@ -18,10 +22,10 @@ def create_calculator(operator):
     return calculator
 
 
-add = create_calculator('+')
-subtract = create_calculator('-')
-multiply = create_calculator('*')
-divide = create_calculator('/')
+add: Callable[[float, float], Union[float, str]] = create_calculator('+')
+subtract: Callable[[float, float], Union[float, str]] = create_calculator('-')
+multiply: Callable[[float, float], Union[float, str]] = create_calculator('*')
+divide: Callable[[float, float], Union[float, str]] = create_calculator('/')
 
 print(add(10, 5))        # 15
 print(subtract(10, 5))   # 5
